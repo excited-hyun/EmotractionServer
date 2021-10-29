@@ -136,9 +136,27 @@ def predict(predict_sentence):
 
 
         test_eval=[]
+
+
+        emotion = ""
         for i in out:
             logits=i
             logits = logits.detach().cpu().numpy()
+
+            if np.argmax(logits) == 0:
+                eomtion = "공포"
+            elif np.argmax(logits) == 1:
+                eomtion = "놀람"
+            elif np.argmax(logits) == 2:
+                eomtion = "분노"
+            elif np.argmax(logits) == 3:
+                eomtion = "슬픔"
+            elif np.argmax(logits) == 4:
+                eomtion = "중립"
+            elif np.argmax(logits) == 5:
+                eomtion = "행복"
+            elif np.argmax(logits) == 6:
+                eomtion = "혐오"
 
             if np.argmax(logits) == 0:
                 test_eval.append("공포가")
@@ -157,6 +175,8 @@ def predict(predict_sentence):
 
         print(test_eval[0] + " 느껴집니다.")
 
+        return emotion
+
 
 
 app = Flask(__name__)
@@ -171,7 +191,6 @@ def postText():
 
      print("Text:", text)
      return predict(text)
-
 
 
 app.run(host="192.168.0.17", port=5000)
