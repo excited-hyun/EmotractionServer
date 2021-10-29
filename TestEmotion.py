@@ -125,6 +125,8 @@ def predict(predict_sentence):
 
     model1.eval()
 
+    emotion = ""
+
     for batch_id, (token_ids, valid_length, segment_ids, label) in enumerate(test_dataloader):
         token_ids = token_ids.long().to(device)
         segment_ids = segment_ids.long().to(device)
@@ -138,26 +140,27 @@ def predict(predict_sentence):
         test_eval=[]
 
 
-        emotion = ""
         for i in out:
             logits=i
             logits = logits.detach().cpu().numpy()
 
             if np.argmax(logits) == 0:
-                eomtion = "공포"
+                emotion = "fear"
             elif np.argmax(logits) == 1:
-                eomtion = "놀람"
+                emotion = "surprised"
             elif np.argmax(logits) == 2:
-                eomtion = "분노"
+                emotion = "angery"
             elif np.argmax(logits) == 3:
-                eomtion = "슬픔"
+                emotion = "sad"
             elif np.argmax(logits) == 4:
-                eomtion = "중립"
+                emotion = "neutral"
             elif np.argmax(logits) == 5:
-                eomtion = "행복"
+                emotion = "happy"
             elif np.argmax(logits) == 6:
-                eomtion = "혐오"
+                emotion = "disgust"
 
+        return emotion
+'''
             if np.argmax(logits) == 0:
                 test_eval.append("공포가")
             elif np.argmax(logits) == 1:
@@ -174,8 +177,7 @@ def predict(predict_sentence):
                 test_eval.append("혐오가")
 
         print(test_eval[0] + " 느껴집니다.")
-
-        return emotion
+'''
 
 
 
@@ -190,7 +192,10 @@ def postText():
      text = data['text']
 
      print("Text:", text)
-     return predict(text)
+     result = predict(text)
+
+     json_object = {'emotion' : result}
+     return jsonify(json_object)
 
 
 app.run(host="192.168.0.17", port=5000)
