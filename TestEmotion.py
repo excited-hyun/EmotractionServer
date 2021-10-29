@@ -6,6 +6,8 @@
 
 !pip install git+https://git@github.com/SKTBrain/KoBERT.git@master'''
 
+from flask import Flask, request, jsonify,make_response
+import json
 import torch
 from torch import nn
 import torch.nn.functional as F
@@ -157,7 +159,24 @@ def predict(predict_sentence):
 
 
 
+app = Flask(__name__)
 
+@app.route('/text', methods=['POST'])
+def postText():
+
+     data = request.get_json(silent=True, cache=False, force=True)
+     print("Received data:", data)
+
+     text = data['text']
+
+     print("Text:", text)
+     return predict(text)
+
+
+
+app.run(host="192.168.0.17", port=5000)
+
+'''
 #질문 무한반복하기!
 end = 1
 while end == 1 :
@@ -166,3 +185,4 @@ while end == 1 :
         break
     predict(sentence)
     print("\n")
+'''
