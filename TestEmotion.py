@@ -195,7 +195,10 @@ def postText():
      result = predict(text)
 
      json_object = {'emotion' : result}
-     return jsonify(json_object)
+
+     response = make_response(json.dumps(json_object,ensure_ascii=False).encode('utf-8'))
+     return response
+    # return jsonify(json_object)
 
 
 app.run(host="192.168.0.17", port=5000)
