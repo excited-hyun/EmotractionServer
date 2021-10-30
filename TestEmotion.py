@@ -201,8 +201,8 @@ def postText():
     # return jsonify(json_object)
 
 
-#app.run(host="0.0.0.0", port=5000)
-app.run(host="192.168.0.17", port=5000)
+app.run(host="0.0.0.0", port=5000)
+#app.run(host="192.168.0.17", port=5000)
 
 '''
 #질문 무한반복하기!
