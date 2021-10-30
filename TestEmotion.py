@@ -149,7 +149,7 @@ def predict(predict_sentence):
             elif np.argmax(logits) == 1:
                 emotion = "surprised"
             elif np.argmax(logits) == 2:
-                emotion = "angery"
+                emotion = "angry"
             elif np.argmax(logits) == 3:
                 emotion = "sad"
             elif np.argmax(logits) == 4:
@@ -201,6 +201,7 @@ def postText():
     # return jsonify(json_object)
 
 
+#app.run(host="0.0.0.0", port=5000)
 app.run(host="192.168.0.17", port=5000)
 
 '''
