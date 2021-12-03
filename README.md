@@ -36,7 +36,16 @@ iOS 클라이언트에서 영어로 데이터를 전달받고 이에서 감정�
 
 #### <사용 방법>
 1. 위의 깃허브를 clone
-2. 가상환경을 만들어 실행한 후 필요한 것 설치   
+```text
+git clone https://github.com/monologg/GoEmotions-pytorch.git
+```
+3. 가상환경을 만들어 실행한 후 필요한 것 설치  
+```text
+virtualenv [가상환경 이름]
+cd [가상환경 이름]
+source bin/activate
+```
+
 ```text
 pip3 install -r requirements.txt
 ```
@@ -44,9 +53,12 @@ pip3 install -r requirements.txt
 ```text
 pip3 install Flask
 ```
-5. server.py파일을 폴더에 추가 후 실행
-
-
+5. server.py 파일을 폴더에 추가 후 실행
+```text
+python server.py
+```
+<br/><br/>
+url은 아래와 같음
 - 27가지 : /original
 - 긍정/부정/중립 : /group
 - 7가지 : /ekman
