@@ -39,21 +39,22 @@ iOS 클라이언트에서 영어로 데이터를 전달받고 이에서 감정�
 ```text
 git clone https://github.com/monologg/GoEmotions-pytorch.git
 ```
-3. 가상환경을 만들어 실행한 후 필요한 것 설치  
+3. 가상환경을 만들어 실행 
 ```text
 virtualenv [가상환경 이름]
 cd [가상환경 이름]
 source bin/activate
+cd ..
 ```
-
+4. clone한 레파지토리에 필요한 것 설치 (requirements.txt는 clone한 파일에 함께 있음)
 ```text
 pip3 install -r requirements.txt
 ```
-3. Flask 설치
+5. Flask 설치
 ```text
 pip3 install Flask
 ```
-5. server.py 파일을 폴더에 추가 후 실행
+6. server.py 파일을 폴더에 추가 후 실행
 ```text
 python server.py
 ```
